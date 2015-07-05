@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1252">
+<title>Processing</title> 
+<style>   
+body{background:#151017; 
+font-size:20px; 
+color:white; 
+padding:20px; } 
+h1{color:RoyalBlue;}
+</style>  
+</head> 
+
+<body> 
+<p><right>
+    <section class="page-header">
+    
+      <a href="https://github.com/msalgorith/MS-ALGORITHM-ROI/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/msalgorith/MS-ALGORITHM-ROI/tarball/master" class="btn">Download .tar.gz</a>
+         </right>
+</p>
+<p>
+<right>
+<a href="http://msalgorith.github.io/MS-ALGORITHM-ROI/" title="REGRESAR A LA PAGINA ANTERIOR">VOLVER</a>
+</right>
+</p>
+<center>
+<h1>Processing Data of Mass Spectrometry</h1> 
+</center>
+
+<h3>Signal Resampling </h3>
+<p>El remuestreo es un proceso en el que se obtiene una nueva señal 
+con valores controlados de m/z, esta nueva señal debe ser en lo posible 
+similar a la original. Valores controlados significa que el número de puntos 
+pueden ser mayores, iguales o menores al de la señal original. Cuando la señal 
+a remuestrear es de mayor resolución se realiza muestreo por abajo, cuando la señal
+ es de menor resolución se realiza muestreo por arriba y para el obtener la misma resolución 
+solo se sincroniza. Los datos EM son de alta resolución por lo que resulta difícil trabajar 
+con algoritmos computacionales intensivos que pueden llegar al limite del ordenador. Una 
+medida aceptable es obtener una resolución de datos manejable por medio de la eliminación
+ de datos redundantes obteniendo así señales de longitud homogénea.
+
+Para reducir o 
+aumentar la resolución de los espectros de utiliza un conversor de frecuencias de muestreo con 
+el factor I/D. Donde, I representa interpolación y D representa decimación.</p>  
+ <center>
+<img src="images/muestras remuestreadas dataWCX2CSV.jpg" alt="Resampling Signal">
+<br>  
+ </center>
+
+<h3>Correcting the Background </h3> 
+<p>Los datos de manera general muestran una línea de base variable consecuencia del ruido 
+químico en la matriz o sobrecarga de iones. Se origina en el detector de iones cuando este se
+ satura. Esta saturación disminuye lentamente con el tiempo.  La línea de base es un desplazamiento 
+de los iones en el eje vertical que eleva los valores de m/z bajos mientras que los valores 
+altos de m/z no se ven tan afectados. Para corregir este problema se estima la línea de base y 
+se resta del espectro original es decir se halla el punto más bajo del espectro y se arrastra hasta 
+cero en el eje vertical.
+
+ Se han desarrollado varias técnicas que ayudan a estimar la 
+linea de base como: Filtros pasa altos implementados con transformada rápida de Fourier, teoría de 
+wavelets y filtros digitales. Los métodos mencionados son poco usuales ya que estos introducen artefactos
+ y distorsionan la señal y seria necesario modelar un filtro para cada espectro. Con estas consideraciones 
+el algoritmo más utilizado para estimar la línea de base en EM se basa en interpolación spline o 
+suavizado.</p>
+
+<center>
+<img src="images/correcion line base dataWCX2CSV.jpg" alt="Correcting of baseline">  
+<br>
+</center>
+
+<h3>Aligning Mass/Charge Values </h3> 
+
+<p>El pre-procesamiento es de suma importancia antes de realizar la etapa de alineación de picos 
+debido a que existe una variación significativa entre las muestras de la intensidad y la ubicación de 
+los picos en $m/z$, por la mala calibración de los espectrómetros de masas. La idea principal es reemplazar 
+los valores originales de m/z por valores calibrados o alineados de m/z, definiendo un vector de picos 
+de con los valores máximos de intensidades, los picos no alineados se desplazan hacia los picos de mayor 
+intensidad, obteniendo así nuevos vectores de intensidades.</p> 
+<center>
+<img src="images/alineacion dataWCX2CSV.jpg" alt="Resample">  
+<br>
+</center>
+
+<h3>Normalizing Relative Intensity </h3>
+<p>La normalización se realiza para los datos experimentales y hacer que los diferentes espectros 
+sean comparables con sus intensidades relativas. Este método se utiliza para identificar y eliminar 
+las variaciones de las muestras que tienen aleatoriamente y que son causadas por la limitada sensibilidad 
+del receptor y el ruido.
+
+ En esta etapa es necesario cambiar la escala de la intensidad máxima 
+en cada espectro y asignarle un cierto valor y que el resto de valores se ajusten proporcionalmente a este 
+valor.</p>  
+<center>
+<img src="images/normalizacion dataWCX2CSV.jpg" alt="normalizacion">  
+<br>
+</center>
+
+<h3>Smoothing Noise </h3>  
+<p>En esta etapa se busca reducir el ruido de tipo eléctrico causado por la instrumentación.  Para
+ ello se aplica técnicas de suavizado a través del filtros digitales o smoothing.  Los filtros 
+digitales que pueden ser aplicados son los de tipo Infinite impulse response (IIR) y
+ Finite Impulse Response (FIR), los cuales deben ser diseñados en función de sus características
+ de frecuencia por lo que no se recomiendan.
+
+ Filtrado de polinomio o smoothing consiste en suavizar 
+muestra a muestra de la señal basándose en un ajuste polinomio regional.  Este tipo de filtro se 
+adapta a la variación de frecuencia de muestreo y conserva la agudeza de los picos. El método de suavizado
+ polinómico de mayor aceptación es el de Savitzky-Golay y Kaiser que emplea un filtro digital de polinomio 
+de mínimos cuadrados el cual conserva la mayor parte de las características de la señal así como la resolución 
+entre picos de iones y la altura de los picos.
+Sin embargo este tipo de algoritmos requiere un análisis mas 
+exhaustivo de software.</p>
+<center>
+  <img src="images/suavizado dataWCX2CSV.jpg" alt="Resample"> 
+<br>
+</center>
+
+<right>
+<a href="http://msalgorith.github.io/MS-ALGORITHM-ROI/" title="REGRESAR A LA PAGINA ANTERIOR">VOLVER</a>
+</right>
+
+<a href="index.html</a> 
+
+
+</body>  
+</html>

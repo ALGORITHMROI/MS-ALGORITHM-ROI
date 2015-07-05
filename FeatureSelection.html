@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1252">
+<title>Feature Selection</title> 
+
+<style>   
+body{background:#151017; 
+font-size:20px; 
+color:white; 
+padding:20px; } 
+h1{color:RoyalBlue;}
+</style>  
+</head> 
+
+<body> 
+<p><right>
+    <section class="page-header">
+    
+      <a href="https://github.com/msalgorith/MS-ALGORITHM-ROI/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/msalgorith/MS-ALGORITHM-ROI/tarball/master" class="btn">Download .tar.gz</a>
+         </right>
+</p>
+<p>
+<br>
+<right>
+<a href="http://msalgorith.github.io/MS-ALGORITHM-ROI/" title="REGRESAR A LA PAGINA ANTERIOR">VOLVER</a>
+</right>
+</p>
+<center>
+<h1>Feature Selection</h1> 
+</center>
+
+<p>Reducción de la dimensionalidad de los datos a través de los siguientes métodos.
+En esta sección se explicalos métodos aplicados para escoger el porcentaje de muestras que serán descartados en función 
+de los resultados de las pruebas estadísticas realizadas. La reducción de la dimensionalidad 
+es esencial cuanto a la optimización de tiempo de procesamiento computacional y reducción 
+de los efectos de sobre-entrenamiento e infra-entrenamiento en la etapa de clasificación de patrones.</p>
+<h3>T-test </h3>
+
+<p>La prueba del T-test es una prueba paramétrica que ayuda en la comprobación de una hipótesis asumiendo algunos propiedades en los datos. Esta prueba
+utiliza la T-Student distribución, esta dristibución es una familia de curvas que varia en función de los grados de libertad.
+
+Para aplicar la t-test se asume que:
+<br> 
+1. La distribución de los datos debe seguir una curva Gaussiana o normal. 
+<br> 
+2. La desviación estadar de los datos son desconocidas pero se asumen que son iguales. 
+<br> 
+Hipotesis a comprobar: Comprobar que las medias de dos grupos de muestras son iguales. Donde los datos de cada muestra 
+pueden ser vectores o matrices. 
+
+Para aplicar la prueba se define el estadístico t que ayuda a aceptar o rechazar la hipótesis al comparar el t calculado con el
+estadístico disponible en tablas. 
+El cálculo del estadístico se calcula de la siguiente forma:
+
+
+<p>
+<center>
+<img src="images/t.jpg" alt="Estadistico de T-student"> 
+<br>
+</center>
+</p>
+
+con: 
+<p>
+<center>
+<img src="images/s.jpg" alt="Desviacion Estandar">
+<br>
+</center>
+</p>
+
+<p>Donde, uA y uB son las medias de cada grupo, s desviación estándar,
+sA y sB la estimación de la desviación estandar obtenidas de las muestras
+disponibles de prueba y mA, mB son los numeros de ejemplos en cada 
+distribución.</p>
+<br>
+<p>De acuerdo a la probabilidad y el intervalo de confianza se acepta 
+o se rechaza la hipótesis.  Para pruebas de procesamiento en datos de
+espectrometría de masas se estable un nivel de confianza del 95% y un 5% de error.</p>
+
+<center>
+<img src="images/ttest ovarian dataWCX2CSV.jpg" alt="T-test">
+<br>
+En la imagen ser observa que un número pequeñas de muestras difieren de otras, por lo que sus medias no son iguales.
+Estos datos nos aportan información de datos altamente discriminantes. 
+<br>  
+ </center>
+
+<h3>U de Mann-Whitney</h3> 
+<p>Es una prueba no paramétrica que sirve para comprobar si dos muestras de datos tienen medianas iguales.
+Las muestras en estudio no siguen una distribución normal.  El estadístico U es el mínimo valor entre
+U1 Y U2 que queda definido por la siguiente fórmula:</p>
+
+<center>
+<img src="images/estadisticou.jpg" alt="U de Mann-Whitney">
+</center>
+<br>
+donde,
+<p>n1 y n2 son los tamaños muestrales</p>
+<p>R1 y R2 es la sumatoria de los rangos de orden de la primera y segunda muestra respectivamente.  Se
+calcula a continuación z definido como un estadístico de contraste. para comparar un z crítico y aceptar o
+rechazar la hipótesis.</p>
+
+
+<center>
+<img src="images/aproximacionnormal.jpg" alt="U de Mann-Whitney">
+<br>
+</center>
+<p>El estadístico de contraste sirve para comparar el z crítico con el z calculado y finalmente aceptar o rechazar la hipótesis.</p>
+
+<center>
+<img src="images/hipotesis.jpg" alt="U de Mann-Whitney">
+<br>
+</center>
+
+
+<center>
+<img align=center src="images/WILCOXON OVARIAN DATA WCX2CSV.jpg" alt="WILCOXON">  
+
+</center>
+<br>
+
+
+<p></p>
+<h3>Chi-Cuadrado</h3>
+
+<p> La prueba Chi- Cuadrado (χ²) es una prueba no paramétrica que mide la discrepancia entre una distribución de frecuencias 
+observadas y otras frecuenccias teóricas o esperadas, indicando en qué medida las diferencias existentes entre ambas, y ademas 
+se puede probar la independencia entre las dos variables.</p>
+
+<p>
+<center>
+<img src="images/chi.gif" alt="Chi Cuadrado">  
+<br>
+</center>
+</p>
+
+
+<p>Donde:</p>
+
+<p>Oi = Frecuencia absoluta observada</p>
+
+<p>Ei = Frecuencia esperada para Ei=n*pi donde n es el tamano de la muestra y pi la probabilidad de la hipotesis nula.</p>
+
+<p>K-1 es los grados de libertad para un n grande.</p>
+ 
+
+<p>
+<center>
+<img src="images/CHI2 ovarian dataWCX2CSV.jpg" alt="Chi Cuadrado">  
+<br>
+</center>
+</p>
+<right>
+<a href="http://msalgorith.github.io/MS-ALGORITHM-ROI/" title="REGRESAR A LA PAGINA ANTERIOR">VOLVER</a>
+</right>
+
+
+<a href="index.html</a> 
+</body>  
+</html></a>
