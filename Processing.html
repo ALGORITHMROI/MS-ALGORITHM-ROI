@@ -31,40 +31,34 @@ h1{color:RoyalBlue;}
 </center>
 
 <h3>Signal Resampling </h3>
-<p>El remuestreo es un proceso en el que se obtiene una nueva señal 
-con valores controlados de m/z, esta nueva señal debe ser en lo posible 
-similar a la original. Valores controlados significa que el número de puntos 
-pueden ser mayores, iguales o menores al de la señal original. Cuando la señal 
-a remuestrear es de mayor resolución se realiza muestreo por abajo, cuando la señal
- es de menor resolución se realiza muestreo por arriba y para el obtener la misma resolución 
-solo se sincroniza. Los datos EM son de alta resolución por lo que resulta difícil trabajar 
-con algoritmos computacionales intensivos que pueden llegar al limite del ordenador. Una 
-medida aceptable es obtener una resolución de datos manejable por medio de la eliminación
- de datos redundantes obteniendo así señales de longitud homogénea.
+<p>Resampling is a process in which a new signal is obtained
+with controlled m / z values, this new signal should be as far as possible
+similar to the original. Controlled values means that the number of points may be higher, 
+at or below the original signal. When the signal is resampled higher resolution down sampling is 
+performed when the signal is of lower resolution sampling is above and to obtain the same 
+resolution only syncs. The EM data are high resolution so it is difficult to work with 
+computational intensive algorithms that can reach the limit of your computer. An acceptable 
+measure to obtain a decision manageable data by eliminating redundant data signals thus obtaining uniform length.
 
-Para reducir o 
-aumentar la resolución de los espectros de utiliza un conversor de frecuencias de muestreo con 
-el factor I/D. Donde, I representa interpolación y D representa decimación.</p>  
+To reduce or increase the resolution of the spectra using a sampling frequency converter 
+with the factor I / D. Where, I represents interpolation and D decimation.</p>  
  <center>
 <img src="images/muestras remuestreadas dataWCX2CSV.jpg" alt="Resampling Signal">
 <br>  
  </center>
 
 <h3>Correcting the Background </h3> 
-<p>Los datos de manera general muestran una línea de base variable consecuencia del ruido 
-químico en la matriz o sobrecarga de iones. Se origina en el detector de iones cuando este se
- satura. Esta saturación disminuye lentamente con el tiempo.  La línea de base es un desplazamiento 
-de los iones en el eje vertical que eleva los valores de m/z bajos mientras que los valores 
-altos de m/z no se ven tan afectados. Para corregir este problema se estima la línea de base y 
-se resta del espectro original es decir se halla el punto más bajo del espectro y se arrastra hasta 
-cero en el eje vertical.
+<p>The data generally show a variable line based on a result of chemical noise or overload matrix ions. It 
+arises from the ion detector when saturated. This saturation decreases slowly with time. 
+The baseline is a displacement of the ions in the vertical axis raises the values of m / z low while 
+high values of m / z not as affected. To correct this problem the baseline is estimated and subtracted 
+from the original spectrum that is the lowest point of the spectrum is and drag it to zero on the vertical axis.
 
- Se han desarrollado varias técnicas que ayudan a estimar la 
-linea de base como: Filtros pasa altos implementados con transformada rápida de Fourier, teoría de 
-wavelets y filtros digitales. Los métodos mencionados son poco usuales ya que estos introducen artefactos
- y distorsionan la señal y seria necesario modelar un filtro para cada espectro. Con estas consideraciones 
-el algoritmo más utilizado para estimar la línea de base en EM se basa en interpolación spline o 
-suavizado.</p>
+Several techniques have been developed that help estimate the baseline as high pass filters implemented with 
+fast Fourier transform, wavelet theory and digital filters. The methods mentioned are unusual as these 
+introduce artifacts and distort the signal and would need to model a filter for each spectrum. With these 
+considerations, the most widely used algorithm for estimating the baseline in MS is based on spline
+interpolation or smoothing.</p>
 
 <center>
 <img src="images/correcion line base dataWCX2CSV.jpg" alt="Correcting of baseline">  
@@ -73,46 +67,42 @@ suavizado.</p>
 
 <h3>Aligning Mass/Charge Values </h3> 
 
-<p>El pre-procesamiento es de suma importancia antes de realizar la etapa de alineación de picos 
-debido a que existe una variación significativa entre las muestras de la intensidad y la ubicación de 
-los picos en $m/z$, por la mala calibración de los espectrómetros de masas. La idea principal es reemplazar 
-los valores originales de m/z por valores calibrados o alineados de m/z, definiendo un vector de picos 
-de con los valores máximos de intensidades, los picos no alineados se desplazan hacia los picos de mayor 
-intensidad, obteniendo así nuevos vectores de intensidades.</p> 
+<p>The baseline correction is critical before the step of aligning peaks because
+there is significant variation between the samples of the intensity and location of the peaks in $m/z$, 
+by bad calibration mass spectrometers. The main idea is to replace
+the original values of m / z for calibrated or aligned m / z, defining a vector of peaks with maximum 
+intensity values, the non-aligned peaks shift to higher intensity peaks, obtaining new vectors of intensity 
+values.</p> 
 <center>
 <img src="images/alineacion dataWCX2CSV.jpg" alt="Resample">  
 <br>
 </center>
 
 <h3>Normalizing Relative Intensity </h3>
-<p>La normalización se realiza para los datos experimentales y hacer que los diferentes espectros 
-sean comparables con sus intensidades relativas. Este método se utiliza para identificar y eliminar 
-las variaciones de las muestras que tienen aleatoriamente y que son causadas por la limitada sensibilidad 
-del receptor y el ruido.
+<p>Normalization was performed to compare the relative intensities of the different spectra. 
+This method is used to identify and eliminate variations samples having randomly and which 
+are caused by the limited sensitivity of the receiver and noise.
 
- En esta etapa es necesario cambiar la escala de la intensidad máxima 
-en cada espectro y asignarle un cierto valor y que el resto de valores se ajusten proporcionalmente a este 
-valor.</p>  
+At this stage it is necessary to change the scale of the maximum intensity in each spectrum and assign a certain 
+value and the other values are adjusted in proportion to this value.</p>  
 <center>
 <img src="images/normalizacion dataWCX2CSV.jpg" alt="normalizacion">  
 <br>
 </center>
 
 <h3>Smoothing Noise </h3>  
-<p>En esta etapa se busca reducir el ruido de tipo eléctrico causado por la instrumentación.  Para
- ello se aplica técnicas de suavizado a través del filtros digitales o smoothing.  Los filtros 
-digitales que pueden ser aplicados son los de tipo Infinite impulse response (IIR) y
- Finite Impulse Response (FIR), los cuales deben ser diseñados en función de sus características
- de frecuencia por lo que no se recomiendan.
+<p>In this stage it is to reduce electrical noise caused by instrumentation type. For this smoothing techniques 
+applied through the digital or smoothing filters. Digital filters that can be applied are the type Infinite 
+Impulse Response (IIR) and Finite Impulse Response (FIR), which must be designed according to their frequency 
+characteristics therefore not recommended.
 
- Filtrado de polinomio o smoothing consiste en suavizar 
-muestra a muestra de la señal basándose en un ajuste polinomio regional.  Este tipo de filtro se 
-adapta a la variación de frecuencia de muestreo y conserva la agudeza de los picos. El método de suavizado
- polinómico de mayor aceptación es el de Savitzky-Golay y Kaiser que emplea un filtro digital de polinomio 
-de mínimos cuadrados el cual conserva la mayor parte de las características de la señal así como la resolución 
-entre picos de iones y la altura de los picos.
-Sin embargo este tipo de algoritmos requiere un análisis mas 
-exhaustivo de software.</p>
+Filtering or smoothing polynomial smoothing is shown signal sample polynomial based on a regional setting. This 
+type of filter is adapted to the sampling rate variation and maintains the sharpness of the peaks. Polynomial 
+smoothing method is the most widely accepted Savitzky-Golay and Kaiser digital filter employing a least squares 
+polynomial which retains most of the characteristics of the signal and the resolution between peaks height ions 
+and peaks.
+
+But such algorithms requires a more comprehensive analysis software.</p>
 <center>
   <img src="images/suavizado dataWCX2CSV.jpg" alt="Resample"> 
 <br>
