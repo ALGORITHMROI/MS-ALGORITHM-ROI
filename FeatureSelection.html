@@ -32,29 +32,28 @@ h1{color:RoyalBlue;}
 <h1>Feature Selection</h1> 
 </center>
 
-<p>Reducción de la dimensionalidad de los datos a través de los siguientes métodos.
-En esta sección se explicalos métodos aplicados para escoger el porcentaje de muestras que serán descartados en función 
-de los resultados de las pruebas estadísticas realizadas. La reducción de la dimensionalidad 
-es esencial cuanto a la optimización de tiempo de procesamiento computacional y reducción 
-de los efectos de sobre-entrenamiento e infra-entrenamiento en la etapa de clasificación de patrones.</p>
+<p>This section describes the methods used to reduce data dimencionalidad explained. 
+This process is to select the percentage of samples that will be discarded based on the results 
+of statistical tests performed. The dimensionality reduction is essential in terms of computational 
+time optimization and reduction processing the effects of over-training and under-training at the 
+stage of pattern classification.</p>
 <h3>T-test </h3>
 
-<p>La prueba del T-test es una prueba paramétrica que ayuda en la comprobación de una hipótesis asumiendo algunos propiedades en los datos. Esta prueba
-utiliza la T-Student distribución, esta dristibución es una familia de curvas que varia en función de los grados de libertad.
+<p>Test T-test is a parametric test that helps in checking a property assuming some hypotheses on data. This test
+using the Student t-distribution, this dristibución is a family of curves that varies depending on the degrees of freedom.
 
-Para aplicar la t-test se asume que:
+To apply the t-test is assumed that:
 <br> 
-1. La distribución de los datos debe seguir una curva Gaussiana o normal. 
+1.The distribution of data should follow a Gaussian or normal curve. 
 <br> 
-2. La desviación estadar de los datos son desconocidas pero se asumen que son iguales. 
+2. The standar deviation of the data are unknown but are assumed to be equal.  
 <br> 
-Hipotesis a comprobar: Comprobar que las medias de dos grupos de muestras son iguales. Donde los datos de cada muestra 
-pueden ser vectores o matrices. 
+Hypotheses to test: Verify that the means of two groups of samples are equal. Where the data 
+of each sample can be vectors or matrices. To apply the test is necesary define the statistical "t", 
+that helps to accept or reject the hypothesis by comparing the "t" calculated with "t" defined 
+Statistical tables available. 
 
-Para aplicar la prueba se define el estadístico t que ayuda a aceptar o rechazar la hipótesis al comparar el t calculado con el
-estadístico disponible en tablas. 
-El cálculo del estadístico se calcula de la siguiente forma:
-
+Calculating the statistic is computed as follows:
 
 <p>
 <center>
@@ -71,44 +70,44 @@ con:
 </center>
 </p>
 
-<p>Donde, uA y uB son las medias de cada grupo, s desviación estándar,
-sA y sB la estimación de la desviación estandar obtenidas de las muestras
-disponibles de prueba y mA, mB son los numeros de ejemplos en cada 
-distribución.</p>
+<p>Where, uA and uB are the mean of each group, s standar deviation,
+sA y sB estimating the standard deviation of the samples obtained
+available test and MA, MB are numbers of examples in each distribution.</p>
 <br>
-<p>De acuerdo a la probabilidad y el intervalo de confianza se acepta 
-o se rechaza la hipótesis.  Para pruebas de procesamiento en datos de
-espectrometría de masas se estable un nivel de confianza del 95% y un 5% de error.</p>
+<p>According to probability and the confidence interval the hypothesis
+is accepted or rejected. Test data processing mass spectrometry confidence 
+level of 95% and 5% error is stable.</p>
 
 <center>
 <img src="images/ttest ovarian dataWCX2CSV.jpg" alt="T-test">
 <br>
-En la imagen ser observa que un número pequeñas de muestras difieren de otras, por lo que sus medias no son iguales.
-Estos datos nos aportan información de datos altamente discriminantes. 
+In the image to be observed that a small number of samples differ from others, so that their means are not equal.
+These few examples give us information of highly discriminating data.
 <br>  
  </center>
 
 <h3>U de Mann-Whitney</h3> 
-<p>Es una prueba no paramétrica que sirve para comprobar si dos muestras de datos tienen medianas iguales.
-Las muestras en estudio no siguen una distribución normal.  El estadístico U es el mínimo valor entre
-U1 Y U2 que queda definido por la siguiente fórmula:</p>
+<p>It is a non parametric test that helps determine whether two samples have equal data medium. 
+The samples studied do not follow a normal distribution. Statistical U is the minimum value between U1 
+and U2 which is defined by the following formula:</p>
 
 <center>
 <img src="images/estadisticou.jpg" alt="U de Mann-Whitney">
 </center>
 <br>
-donde,
-<p>n1 y n2 son los tamaños muestrales</p>
-<p>R1 y R2 es la sumatoria de los rangos de orden de la primera y segunda muestra respectivamente.  Se
-calcula a continuación z definido como un estadístico de contraste. para comparar un z crítico y aceptar o
-rechazar la hipótesis.</p>
+where,
+<p>n1 and n2 are the sample sizes</p>
+<p>R1 and R2 are the sum of the rank order of the first and second 
+samples respectively. It then calculates "z" defined as a contrast statistic to compare 
+with a critical "z" and accept or reject the hypothesis.</p>
 
 
 <center>
 <img src="images/aproximacionnormal.jpg" alt="U de Mann-Whitney">
 <br>
 </center>
-<p>El estadístico de contraste sirve para comparar el z crítico con el z calculado y finalmente aceptar o rechazar la hipótesis.</p>
+<p>The statistic used to compare the critical "z" with the calculated "z" and 
+finally accept or reject the hypothesis.</p>
 
 <center>
 <img src="images/hipotesis.jpg" alt="U de Mann-Whitney">
@@ -126,9 +125,9 @@ rechazar la hipótesis.</p>
 <p></p>
 <h3>Chi-Cuadrado</h3>
 
-<p> La prueba Chi- Cuadrado (χ²) es una prueba no paramétrica que mide la discrepancia entre una distribución de frecuencias 
-observadas y otras frecuenccias teóricas o esperadas, indicando en qué medida las diferencias existentes entre ambas, y ademas 
-se puede probar la independencia entre las dos variables.</p>
+<p> Chi-square test (χ²) is a nonparametric test that measures the discrepancy between observed frequencies 
+distribution and other theoretical or expected frequencies, indicating to what extent the differences between the
+two, and also can test the independence between the two variables.</p>
 
 <p>
 <center>
@@ -138,15 +137,14 @@ se puede probar la independencia entre las dos variables.</p>
 </p>
 
 
-<p>Donde:</p>
+<p>Where:</p>
 
-<p>Oi = Frecuencia absoluta observada</p>
+<p>Oi = Observed absolute frequency</p>
 
-<p>Ei = Frecuencia esperada para Ei=n*pi donde n es el tamano de la muestra y pi la probabilidad de la hipotesis nula.</p>
+<p>Ei = Expected frequency Ei=n*pi where n is the sample size and pi the probability of the null hypothesis. </ p>
 
-<p>K-1 es los grados de libertad para un n grande.</p>
+<p> K-1 is the degrees of freedom for a larger n.</p>
  
-
 <p>
 <center>
 <img src="images/CHI2 ovarian dataWCX2CSV.jpg" alt="Chi Cuadrado">  
